@@ -500,15 +500,15 @@ impl ToPyObject for PyDataType {
     }
 }
 
-impl IntoPy<PyObject> for PySchema {
-    fn into_py(self, py: Python<'_>) -> PyObject {
-        let dict = PyDict::new_bound(py);
-        for (k, v) in self.0.iter() {
-            dict.set_item(k.as_str(), PyDataType(v.clone())).unwrap();
-        }
-        dict.into_py(py)
-    }
-}
+// impl IntoPy<PyObject> for PySchema {
+//     fn into_py(self, py: Python<'_>) -> PyObject {
+//         let dict = PyDict::new_bound(py);
+//         for (k, v) in self.0.iter() {
+//             dict.set_item(k.as_str(), PyDataType(v.clone())).unwrap();
+//         }
+//         dict.into_py(py)
+//     }
+// }
 
 impl<'py> FromPyObject<'py> for PyDataType {
     fn extract_bound(ob: &Bound<'py, PyAny>) -> PyResult<Self> {
